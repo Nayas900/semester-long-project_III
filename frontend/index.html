@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MCA RAG Assistant</title>
+    <title>MCA Academic Assistant</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1 style="color: green;">MCA Academic Assistant (RAG)</h1>
+<h1 class="title">MCA Academic Assistant </h1>
 
-<textarea id="question" placeholder="Ask your MCA question..."></textarea>
-<br>
-<button onclick="askQuestion()">Ask</button>
+<div id="chat-container">
+    <!-- Messages will appear here -->
+</div>
 
-<pre id="answer"></pre>
+<div class="input-area">
+    <textarea id="question" placeholder="Ask your MCA question..."></textarea>
+    <button onclick="askQuestion()">Send</button>
+</div>
 
 <hr>
 
-<h2>Quiz Section</h2>
-<button onclick="goToQuiz()">Go to Quiz</button>
+<hr>
+
+<div class="quiz-section">
+    <h2>Quiz Section</h2>
+    <button onclick="goToQuiz()">Go to Quiz</button>
+</div>
+
 
 <script src="script.js"></script>
 </body>

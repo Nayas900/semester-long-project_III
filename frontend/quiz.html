@@ -6,18 +6,21 @@
 </head>
 <body>
 
-<h1>MCA Quiz Section</h1>
+<h1 class="quiz-title">MCA Quiz Section</h1>
 
-<button onclick="loadQuiz()">Start Quiz</button>
+<div class="quiz-container">
 
-<div id="quiz"></div>
+    <button class="quiz-btn start-btn" onclick="loadQuiz()">Start Quiz</button>
 
-<button onclick="submitQuiz()">Submit Quiz</button>
+    <div id="quiz"></div>
 
-<p id="result"></p>
+    <button class="quiz-btn submit-btn" onclick="submitQuiz()">Submit Quiz</button>
 
-<br>
-<button onclick="goBack()">⬅ Back to Assistant</button>
+    <p id="result"></p>
+
+    <button class="quiz-btn back-btn" onclick="goBack()">⬅ Back to Assistant</button>
+
+</div>
 
 <script src="quiz.js"></script>
 </body>

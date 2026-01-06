@@ -1,5 +1,3 @@
-
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from rag_engine import retrieve_context, generate_answer

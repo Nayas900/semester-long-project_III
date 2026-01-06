@@ -1,26 +1,51 @@
-# quiz_engine.py
+import json
+from openai import OpenAI
 
-import random
-from rag_engine import retrieve_context
+client = OpenAI()
 
-def generate_quiz(num_questions=5):
-    quiz = []
 
-    # Get random concepts
-    contexts = retrieve_context("important MCA concepts", top_k=10)
-    selected = random.sample(contexts, num_questions)
+def generate_quiz(num_questions=4):
 
-    for text in selected:
-        question = {
-            "question": f"What is related to: {text} ?",
-            "options": {
-                "A": "Correct explanation",
-                "B": "Wrong option 1",
-                "C": "Wrong option 2",
-                "D": "Wrong option 3"
-            },
-            "correct": "A"
-        }
-        quiz.append(question)
+    prompt = f"""
+You are an academic quiz generator for MCA students.
+
+Generate EXACTLY {num_questions} random multiple-choice questions
+ONLY from the following subjects:
+- Computer Networks (CN)
+- Operating Systems (OS)
+- Database Management Systems (DBMS)
+- Data Structures and Algorithms (DSA)
+
+Rules:
+- Questions must be short and exam-oriented
+- Each question must have exactly 4 options (A, B, C, D)
+- Only ONE correct answer
+- Questions should be RANDOM each time
+- Do NOT include programming syntax questions
+- Do NOT include any other subjects
+- Output ONLY valid JSON (no explanations)
+
+JSON format:
+[
+  {{
+    "question": "",
+    "options": {{
+      "A": "",
+      "B": "",
+      "C": "",
+      "D": ""
+    }},
+    "correct": ""
+  }}
+]
+"""
+
+    response = client.responses.create(
+        model="gpt-5-nano",
+        input=prompt
+    )
+
+    quiz_text = response.output_text.strip()
+    quiz = json.loads(quiz_text)
 
     return quiz
